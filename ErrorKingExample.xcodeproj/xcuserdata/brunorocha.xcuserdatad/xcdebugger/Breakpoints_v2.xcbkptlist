@@ -10,13 +10,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ErrorKingExample/ErrorProne.swift"
-            timestampString = "492800130.41731"
+            timestampString = "492804285.44787"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "Static"
-            landmarkType = "3">
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "initialize()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ErrorKingExample/ErrorProne.swift"
+            timestampString = "492804285.44787"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "initialize()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -26,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ErrorKingExample/ViewController.swift"
-            timestampString = "492800068.530661"
+            timestampString = "492806595.873184"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "actionBeforeDisplayingEmptyState()"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "errorKingEmptyStateReloadButtonTouched()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

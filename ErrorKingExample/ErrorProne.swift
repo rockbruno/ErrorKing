@@ -43,14 +43,13 @@ protocol ErrorKingEmptyStateType: class {
 
 extension ErrorKing: ErrorKingEmptyStateType {
     final func reloadData() {
-        originalVC?.emptyStateReloadButtonTouched()
+        originalVC?.errorKingEmptyStateReloadButtonTouched()
     }
 }
 
 public class ErrorKing {
     private (set) weak var originalVC: UIViewController?
     private (set) var shouldDisplayError = false
-    private (set) var storedError: NSError?
     private (set) var storedTitle: String = ""
     private (set) var storedDescription: String = ""
     private var emptyStateView: ErrorKingEmptyStateView = ErrorKingEmptyStateView.loadFromNib()
@@ -78,9 +77,11 @@ public class ErrorKing {
         emptyStateView.frame = rect
     }
     
-    final func setError(error: NSError?) {
+    final func setError(title title: String, description: String) {
         shouldDisplayError = true
-        storedError = error
+        storedTitle = title
+        storedDescription = description
+        displayErrorIfNeeded()
     }
     
     final func displayErrorIfNeeded() {
@@ -89,12 +90,11 @@ public class ErrorKing {
     }
     
     final private func displayError(title: String, description: String) {
-        guard let error = storedError where originalVC?.isVisible == true else {
+        guard originalVC?.isVisible == true else {
             return
         }
         emptyStateView.errorLabel?.text = description
         shouldDisplayError = false
-        storedError = nil
         dispatch_async(dispatch_get_main_queue(), {
             let alertController = OLErrorController(title: title, message: description)
             let handler: ErrorKingVoidHandler = { _ in
@@ -106,10 +106,10 @@ public class ErrorKing {
     }
     
     final private func prepareEmptyState() {
-        originalVC?.actionBeforeDisplayingEmptyState()
+        originalVC?.actionBeforeDisplayingErrorKingEmptyState()
     }
     
-    final private func actionBeforeDisplayingEmptyState() {
+    final private func actionBeforeDisplayingErrorKingEmptyState() {
         displayEmptyState()
     }
     
@@ -125,7 +125,7 @@ public class ErrorKing {
         }
     }
     
-    final private func emptyStateReloadButtonTouched() {
+    final private func errorKingEmptyStateReloadButtonTouched() {
         emptyStateView.hidden = true
     }
 }
@@ -134,7 +134,7 @@ extension UIViewController {
     private struct AssociatedKeys {
         static var DescriptiveName = "nsh_DescriptiveName"
     }
-    var errorKing: ErrorKing! {
+    var errorKing: ErrorKing? {
         get {
             return objc_getAssociatedObject(self, &AssociatedKeys.DescriptiveName) as? ErrorKing
         }
@@ -163,8 +163,8 @@ extension UIViewController {
         }
         
         dispatch_once(&Static.loadToken) {
-            let originalSelector = Selector("viewDidLoad")
-            let swizzledSelector = Selector("ek_viewDidLoad")
+            let originalSelector = #selector(UIViewController.viewDidLoad)
+            let swizzledSelector = #selector(UIViewController.ek_viewDidLoad)
             
             let originalMethod = class_getInstanceMethod(self, originalSelector)
             let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
@@ -179,8 +179,8 @@ extension UIViewController {
         }
         
         dispatch_once(&Static.appearToken) {
-            let originalSelector = Selector("viewDidAppear:")
-            let swizzledSelector = Selector("ek_viewDidAppear:")
+            let originalSelector = #selector(UIViewController.viewDidAppear(_:))
+            let swizzledSelector = #selector(UIViewController.ek_viewDidAppear(_:))
             
             let originalMethod = class_getInstanceMethod(self, originalSelector)
             let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
@@ -199,131 +199,22 @@ extension UIViewController {
     
     func ek_viewDidAppear(animated: Bool) {
         self.ek_viewDidAppear(animated)
-        self.errorKing.displayErrorIfNeeded()
+        self.errorKing?.displayErrorIfNeeded()
     }
     
     func ek_viewDidLoad() {
         self.ek_viewDidLoad()
         self.errorKing = ErrorKing()
-        self.errorKing.setup(self)
+        self.errorKing?.setup(self)
     }
     
     //
     
-    func actionBeforeDisplayingEmptyState() {
-        self.errorKing.actionBeforeDisplayingEmptyState()
+    func actionBeforeDisplayingErrorKingEmptyState() {
+        self.errorKing?.actionBeforeDisplayingErrorKingEmptyState()
     }
     
-    func emptyStateReloadButtonTouched() {
-        self.errorKing.emptyStateReloadButtonTouched()
+    func errorKingEmptyStateReloadButtonTouched() {
+        self.errorKing?.errorKingEmptyStateReloadButtonTouched()
     }
 }
-
-/*class OLErrorCoordinator {
-    private (set) weak var originalVC: UIViewController?
-    private (set) var shouldDisplayError = false
-    private (set) var storedError: NSError?
-    private let emptyStateView: OLEmptyStateView
-    private var filterEmptyStateView: OLFilterEmptyStateView? = nil
-    
-    init(owner: UIViewController) {
-        emptyStateView = OLEmptyStateView.loadFromNib()
-        emptyStateView.coordinator = self
-        emptyStateView.frame = owner.view.frame
-        emptyStateView.layoutIfNeeded()
-        emptyStateView.hidden = true
-        owner.view.addSubview(emptyStateView)
-        originalVC = owner
-        guard owner as? OLCalendarViewController != nil else {
-            return
-        }
-        let filterEmptyState = OLFilterEmptyStateView.loadFromNib()
-        filterEmptyState.coordinator = self
-        filterEmptyState.frame = owner.view.frame
-        filterEmptyState.layoutIfNeeded()
-        filterEmptyState.hidden = true
-        owner.view.addSubview(filterEmptyState)
-        filterEmptyStateView = filterEmptyState
-    }
-    
-    final private func displayError() {
-        guard let error = storedError where originalVC?.isVisible == true else {
-            return
-        }
-        let description = olympicsDescriptionFor(error: error, mode: .Alert)
-        emptyStateView.errorLabel?.text = olympicsDescriptionFor(error: error, mode: .EmptyState)
-        shouldDisplayError = false
-        storedError = nil
-        dispatch_async(dispatch_get_main_queue(), {
-            MBProgressHUD.hideHUDForView(self.originalVC?.view, animated: false)
-            let alertController = OLErrorController(title: "Erro \(olympicsErrorCodeFor(error: error))", message: description)
-            let handler: OLErrorVoidHandler = { _ in
-                self.prepareEmptyState()
-            }
-            alertController.addButtonAndHandler(nil)
-            self.originalVC?.presentViewController(alertController.alert, animated: true, completion: handler)
-        })
-    }
-    
-    final func setError(error: NSError?, client: OLHTTPClient) {
-        client.attempts = 0
-        shouldDisplayError = true
-        storedError = error
-    }
-    
-    final func displayErrorIfAvailable() {
-        guard shouldDisplayError else { return }
-        displayError()
-    }
-    
-    final private func prepareEmptyState() {
-        actionBeforeDisplayingEmptyState()
-    }
-    
-    final func displayEmptyState() {
-        guard let originalVC = originalVC else {
-            return
-        }
-        originalVC.view.userInteractionEnabled = true
-        emptyStateView.alpha = 0
-        emptyStateView.hidden = false
-        UIView.animateWithDuration(0.5) {
-            self.emptyStateView.alpha = 1.0
-        }
-    }
-    
-    final func displayFilterEmptyState() {
-        guard let originalVC = originalVC else {
-            return
-        }
-        originalVC.view.userInteractionEnabled = true
-        filterEmptyStateView?.alpha = 0
-        filterEmptyStateView?.hidden = false
-        UIView.animateWithDuration(0.5) {
-            self.filterEmptyStateView?.alpha = 1.0
-        }
-    }
-    
-    final func setEmptyStateFrame(rect: CGRect) {
-        emptyStateView.frame = rect
-    }
-    
-    func actionBeforeDisplayingEmptyState() {
-        displayEmptyState()
-    }
-    
-    func actionBeforeDisplayingFilterEmptyState() {
-        displayFilterEmptyState()
-    }
-    
-    func emptyStateReloadButtonTouched() {
-        emptyStateView.hidden = true
-        filterEmptyStateView?.hidden = true
-    }
-}
-
-extension OLErrorCoordinator: OLErrorCoordinatorEmptyStateType {
-    final func reloadData() {
-        emptyStateReloadButtonTouched()
-    }
-}*/
