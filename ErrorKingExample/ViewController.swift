@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, ErrorProne {
+class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ class ViewController: UIViewController, ErrorProne {
 
 }
 
-extension ViewController {
+extension ViewController: ErrorProne {
     func actionBeforeDisplayingErrorKingEmptyState() {
         errorKing?.actionBeforeDisplayingErrorKingEmptyState()
     }

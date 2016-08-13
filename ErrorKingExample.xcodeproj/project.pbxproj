@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A31D4A611D5FD2CC009E82F3 /* ErrorProne.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BF4A841D5F5C9100EA9C9D /* ErrorProne.swift */; };
+		A31D4A631D5FD690009E82F3 /* ErrorKingNibLoadeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31D4A621D5FD690009E82F3 /* ErrorKingNibLoadeable.swift */; };
+		A31D4A651D5FD6EA009E82F3 /* ErrorKing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31D4A641D5FD6EA009E82F3 /* ErrorKing.swift */; };
 		A3BF4A571D5F5C8300EA9C9D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BF4A561D5F5C8300EA9C9D /* AppDelegate.swift */; };
 		A3BF4A591D5F5C8300EA9C9D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BF4A581D5F5C8300EA9C9D /* ViewController.swift */; };
 		A3BF4A5C1D5F5C8300EA9C9D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3BF4A5A1D5F5C8300EA9C9D /* Main.storyboard */; };
@@ -14,10 +17,9 @@
 		A3BF4A611D5F5C8300EA9C9D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3BF4A5F1D5F5C8300EA9C9D /* LaunchScreen.storyboard */; };
 		A3BF4A6C1D5F5C8300EA9C9D /* ErrorKingExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BF4A6B1D5F5C8300EA9C9D /* ErrorKingExampleTests.swift */; };
 		A3BF4A771D5F5C8300EA9C9D /* ErrorKingExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BF4A761D5F5C8300EA9C9D /* ErrorKingExampleUITests.swift */; };
-		A3BF4A851D5F5C9100EA9C9D /* ErrorProne.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BF4A841D5F5C9100EA9C9D /* ErrorProne.swift */; };
 		A3BF4A881D5F6E4500EA9C9D /* ErrorKingEmptyStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3BF4A861D5F6E4500EA9C9D /* ErrorKingEmptyStateView.xib */; };
 		A3BF4A891D5F6E4500EA9C9D /* ErrorKingEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BF4A871D5F6E4500EA9C9D /* ErrorKingEmptyStateView.swift */; };
-		A3BF4A8B1D5F6F8B00EA9C9D /* OLErrorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BF4A8A1D5F6F8B00EA9C9D /* OLErrorController.swift */; };
+		A3BF4A8B1D5F6F8B00EA9C9D /* ErrorKingAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BF4A8A1D5F6F8B00EA9C9D /* ErrorKingAlertController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A31D4A621D5FD690009E82F3 /* ErrorKingNibLoadeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorKingNibLoadeable.swift; sourceTree = "<group>"; };
+		A31D4A641D5FD6EA009E82F3 /* ErrorKing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorKing.swift; sourceTree = "<group>"; };
 		A3BF4A531D5F5C8300EA9C9D /* ErrorKingExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ErrorKingExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3BF4A561D5F5C8300EA9C9D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3BF4A581D5F5C8300EA9C9D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -54,7 +58,7 @@
 		A3BF4A841D5F5C9100EA9C9D /* ErrorProne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorProne.swift; sourceTree = "<group>"; };
 		A3BF4A861D5F6E4500EA9C9D /* ErrorKingEmptyStateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorKingEmptyStateView.xib; sourceTree = "<group>"; };
 		A3BF4A871D5F6E4500EA9C9D /* ErrorKingEmptyStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorKingEmptyStateView.swift; sourceTree = "<group>"; };
-		A3BF4A8A1D5F6F8B00EA9C9D /* OLErrorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OLErrorController.swift; sourceTree = "<group>"; };
+		A3BF4A8A1D5F6F8B00EA9C9D /* ErrorKingAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorKingAlertController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,9 +112,11 @@
 				A3BF4A561D5F5C8300EA9C9D /* AppDelegate.swift */,
 				A3BF4A581D5F5C8300EA9C9D /* ViewController.swift */,
 				A3BF4A841D5F5C9100EA9C9D /* ErrorProne.swift */,
+				A31D4A641D5FD6EA009E82F3 /* ErrorKing.swift */,
+				A31D4A621D5FD690009E82F3 /* ErrorKingNibLoadeable.swift */,
 				A3BF4A861D5F6E4500EA9C9D /* ErrorKingEmptyStateView.xib */,
 				A3BF4A871D5F6E4500EA9C9D /* ErrorKingEmptyStateView.swift */,
-				A3BF4A8A1D5F6F8B00EA9C9D /* OLErrorController.swift */,
+				A3BF4A8A1D5F6F8B00EA9C9D /* ErrorKingAlertController.swift */,
 				A3BF4A5A1D5F5C8300EA9C9D /* Main.storyboard */,
 				A3BF4A5D1D5F5C8300EA9C9D /* Assets.xcassets */,
 				A3BF4A5F1D5F5C8300EA9C9D /* LaunchScreen.storyboard */,
@@ -271,9 +277,11 @@
 			files = (
 				A3BF4A591D5F5C8300EA9C9D /* ViewController.swift in Sources */,
 				A3BF4A571D5F5C8300EA9C9D /* AppDelegate.swift in Sources */,
-				A3BF4A851D5F5C9100EA9C9D /* ErrorProne.swift in Sources */,
-				A3BF4A8B1D5F6F8B00EA9C9D /* OLErrorController.swift in Sources */,
+				A3BF4A8B1D5F6F8B00EA9C9D /* ErrorKingAlertController.swift in Sources */,
+				A31D4A631D5FD690009E82F3 /* ErrorKingNibLoadeable.swift in Sources */,
 				A3BF4A891D5F6E4500EA9C9D /* ErrorKingEmptyStateView.swift in Sources */,
+				A31D4A611D5FD2CC009E82F3 /* ErrorProne.swift in Sources */,
+				A31D4A651D5FD6EA009E82F3 /* ErrorKing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +508,7 @@
 				A3BF4A7D1D5F5C8300EA9C9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A3BF4A7E1D5F5C8300EA9C9D /* Build configuration list for PBXNativeTarget "ErrorKingExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +517,7 @@
 				A3BF4A801D5F5C8300EA9C9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A3BF4A811D5F5C8300EA9C9D /* Build configuration list for PBXNativeTarget "ErrorKingExampleUITests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +526,7 @@
 				A3BF4A831D5F5C8300EA9C9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

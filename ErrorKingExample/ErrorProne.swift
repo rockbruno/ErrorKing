@@ -9,128 +9,7 @@
 import Foundation
 import UIKit
 
-protocol NibLoadable {}
-
-extension NibLoadable where Self: UIView {
-    static func loadFromNib() -> Self {
-        // The view class should have the same name as the xib filename, e.g.: MyView and MyView.xib
-        if let nibName = nibName() {
-            let nib = UINib(nibName: nibName, bundle: nil)
-            if let view = nib.instantiateWithOwner(self, options: nil).first as? Self {
-                return view
-            }
-        }
-        
-        fatalError("\(self) does not have a nib with the same name!")
-    }
-    
-    static func nibName() -> String? {
-        // self can print the module, e.g.: Module.MyView
-        // we extract the last piece to make sure we are using the correct name
-        return "\(self)".characters.split{$0 == "."}.map(String.init).last
-    }
-}
-
-extension UIViewController {
-    var isVisible: Bool {
-        return self.isViewLoaded() && self.view.window != nil
-    }
-}
-
-protocol ErrorKingEmptyStateType: class {
-    func reloadData()
-}
-
-extension ErrorKing: ErrorKingEmptyStateType {
-    final func reloadData() {
-        (originalVC as? ErrorProne)?.errorKingEmptyStateReloadButtonTouched()
-    }
-}
-
-public class ErrorKing {
-    private (set) weak var originalVC: UIViewController?
-    private (set) var shouldDisplayError = false
-    private (set) var storedTitle: String = ""
-    private (set) var storedDescription: String = ""
-    private var emptyStateView: ErrorKingEmptyStateView = ErrorKingEmptyStateView.loadFromNib()
-    
-    private init () {}
-    
-    final private func setup(owner: UIViewController) {
-        originalVC = owner
-        setEmptyStateView(toView: ErrorKingEmptyStateView.loadFromNib())
-        owner.view.addSubview(emptyStateView)
-    }
-    
-    final func setEmptyStateView(toView view: ErrorKingEmptyStateView) {
-        guard let originalVC = originalVC else {
-            return
-        }
-        emptyStateView = view
-        emptyStateView.coordinator = self
-        emptyStateView.frame = originalVC.view.frame
-        emptyStateView.layoutIfNeeded()
-        emptyStateView.hidden = true
-    }
-    
-    final func setEmptyStateFrame(rect: CGRect) {
-        emptyStateView.frame = rect
-    }
-    
-    final func setError(title title: String, description: String) {
-        shouldDisplayError = true
-        storedTitle = title
-        storedDescription = description
-        displayErrorIfNeeded()
-    }
-    
-    final func displayErrorIfNeeded() {
-        guard shouldDisplayError else { return }
-        displayError(storedTitle, description: storedDescription)
-    }
-    
-    final private func displayError(title: String, description: String) {
-        guard originalVC?.isVisible == true else {
-            return
-        }
-        emptyStateView.errorLabel?.text = description
-        shouldDisplayError = false
-        dispatch_async(dispatch_get_main_queue(), {
-            let alertController = OLErrorController(title: title, message: description)
-            let handler: ErrorKingVoidHandler = { _ in
-                self.prepareEmptyState()
-            }
-            alertController.addButtonAndHandler(nil)
-            self.originalVC?.presentViewController(alertController.alert, animated: true, completion: handler)
-        })
-    }
-    
-    final private func prepareEmptyState() {
-        (originalVC as? ErrorProne)?.actionBeforeDisplayingErrorKingEmptyState()
-    }
-    
-    final func actionBeforeDisplayingErrorKingEmptyState() {
-        displayEmptyState()
-    }
-    
-    final private func displayEmptyState() {
-        guard let originalVC = originalVC else {
-            return
-        }
-        originalVC.view.userInteractionEnabled = true
-        emptyStateView.alpha = 0
-        emptyStateView.hidden = false
-        UIView.animateWithDuration(0.5) {
-            self.emptyStateView.alpha = 1.0
-        }
-    }
-    
-    final func errorKingEmptyStateReloadButtonTouched() {
-        emptyStateView.hidden = true
-    }
-}
-
- protocol ErrorProne: class {
+public protocol ErrorProne: class {
     var errorKing: ErrorKing? { get set }
     func actionBeforeDisplayingErrorKingEmptyState()
     func errorKingEmptyStateReloadButtonTouched()
@@ -139,13 +18,13 @@ public class ErrorKing {
 extension ErrorProne where Self: UIViewController {
     var errorKing: ErrorKing? {
         get {
-            return objc_getAssociatedObject(self, &UIViewController.AssociatedKeys.DescriptiveName) as? ErrorKing
+            return objc_getAssociatedObject(self, &Self.AssociatedKeys.DescriptiveName) as? ErrorKing
         }
         set {
             if let newValue = newValue {
                 objc_setAssociatedObject(
                     self,
-                    &UIViewController.AssociatedKeys.DescriptiveName,
+                    &Self.AssociatedKeys.DescriptiveName,
                     newValue as ErrorKing?,
                     .OBJC_ASSOCIATION_RETAIN_NONATOMIC
                 )
@@ -162,44 +41,25 @@ extension ErrorProne where Self: UIViewController {
     }
 }
 
-struct ErrorData {
-    var errorKing: ErrorKing? {
-        get {
-            guard let asd = objc_getAssociatedObject(associative, &UIViewController.AssociatedKeys.DescriptiveName) as? ErrorKing else {
-                return ErrorKing()
-            }
-            return asd
-        }
-        set {
-            if let newValue = newValue {
-                objc_setAssociatedObject(
-                    associative,
-                    &UIViewController.AssociatedKeys.DescriptiveName,
-                    newValue as ErrorKing?,
-                    .OBJC_ASSOCIATION_RETAIN_NONATOMIC
-                )
-            }
-        }
-    }
-    let associative: UIViewController = UIViewController()
-}
-
 extension UIViewController {
     private struct AssociatedKeys {
-        static var DescriptiveName = "nsh_DescriptiveName"
+        static var DescriptiveName = "ek_DescriptiveName"
+    }
+    var isVisible: Bool {
+        return self.isViewLoaded() && self.view.window != nil
     }
 }
 
 extension UIViewController {
     
-    public override class func initialize() {
+    override public class func initialize() {
+        if self !== UIViewController.self {
+            return
+        }
+
         struct Static {
             static var loadToken: dispatch_once_t = 0
             static var appearToken: dispatch_once_t = 0
-        }
-        
-        if self !== UIViewController.self || self as? ErrorProne == nil {
-            return
         }
         
         dispatch_once(&Static.loadToken) {
@@ -237,13 +97,21 @@ extension UIViewController {
     
     // MARK: - Method Swizzling
     
-    func ek_viewDidAppear(animated: Bool) {
-        self.ek_viewDidAppear(animated)
-        (self as! ErrorProne).errorKing?.displayErrorIfNeeded()
-    }
-    
     func ek_viewDidLoad() {
         self.ek_viewDidLoad()
-        (self as! ErrorProne).errorKing?.setup(self)
+        guard let errorProneController = self as? ErrorProne else {
+            return
+        } //I can't check this on the initialize() method. It used to work before but now it throws an unknown compile error - maybe because I added :class to the protocol?
+        let errorKing = ErrorKing()
+        errorKing.setup(self)
+        errorProneController.errorKing = errorKing
+    }
+    
+    func ek_viewDidAppear(animated: Bool) {
+        self.ek_viewDidAppear(animated)
+        guard let errorProneController = self as? ErrorProne else {
+            return
+        }
+        errorProneController.errorKing?.displayErrorIfNeeded()
     }
 }

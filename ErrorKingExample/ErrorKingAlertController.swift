@@ -11,7 +11,7 @@ import UIKit
 typealias ErrorKingVoidHandler = (() -> Void)
 typealias ErrorKingActionHandler = ((UIAlertAction) -> Void)
 
-class OLErrorController {
+class ErrorKingAlertController {
     let alert: UIAlertController
     
     init(title: String, message: String) {

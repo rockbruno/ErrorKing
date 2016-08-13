@@ -17,4 +17,4 @@ class ErrorKingEmptyStateView: UIView {
     }
 }
 
-extension ErrorKingEmptyStateView: NibLoadable {}
+extension ErrorKingEmptyStateView: ErrorKingNibLoadable {}
