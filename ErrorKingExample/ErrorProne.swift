@@ -43,7 +43,7 @@ protocol ErrorKingEmptyStateType: class {
 
 extension ErrorKing: ErrorKingEmptyStateType {
     final func reloadData() {
-        originalVC?.errorKingEmptyStateReloadButtonTouched()
+        (originalVC as? ErrorProne)?.errorKingEmptyStateReloadButtonTouched()
     }
 }
 
@@ -106,10 +106,10 @@ public class ErrorKing {
     }
     
     final private func prepareEmptyState() {
-        originalVC?.actionBeforeDisplayingErrorKingEmptyState()
+        (originalVC as? ErrorProne)?.actionBeforeDisplayingErrorKingEmptyState()
     }
     
-    final private func actionBeforeDisplayingErrorKingEmptyState() {
+    final func actionBeforeDisplayingErrorKingEmptyState() {
         displayEmptyState()
     }
     
@@ -125,40 +125,80 @@ public class ErrorKing {
         }
     }
     
-    final private func errorKingEmptyStateReloadButtonTouched() {
+    final func errorKingEmptyStateReloadButtonTouched() {
         emptyStateView.hidden = true
     }
 }
 
-extension UIViewController {
-    private struct AssociatedKeys {
-        static var DescriptiveName = "nsh_DescriptiveName"
-    }
+ protocol ErrorProne: class {
+    var errorKing: ErrorKing? { get set }
+    func actionBeforeDisplayingErrorKingEmptyState()
+    func errorKingEmptyStateReloadButtonTouched()
+}
+
+extension ErrorProne where Self: UIViewController {
     var errorKing: ErrorKing? {
         get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.DescriptiveName) as? ErrorKing
+            return objc_getAssociatedObject(self, &UIViewController.AssociatedKeys.DescriptiveName) as? ErrorKing
         }
         set {
             if let newValue = newValue {
                 objc_setAssociatedObject(
                     self,
-                    &AssociatedKeys.DescriptiveName,
+                    &UIViewController.AssociatedKeys.DescriptiveName,
                     newValue as ErrorKing?,
                     .OBJC_ASSOCIATION_RETAIN_NONATOMIC
                 )
             }
         }
     }
+    
+    func actionBeforeDisplayingErrorKingEmptyState() {
+        errorKing?.actionBeforeDisplayingErrorKingEmptyState()
+    }
+    
+    func errorKingEmptyStateReloadButtonTouched() {
+        errorKing?.errorKingEmptyStateReloadButtonTouched()
+    }
+}
+
+struct ErrorData {
+    var errorKing: ErrorKing? {
+        get {
+            guard let asd = objc_getAssociatedObject(associative, &UIViewController.AssociatedKeys.DescriptiveName) as? ErrorKing else {
+                return ErrorKing()
+            }
+            return asd
+        }
+        set {
+            if let newValue = newValue {
+                objc_setAssociatedObject(
+                    associative,
+                    &UIViewController.AssociatedKeys.DescriptiveName,
+                    newValue as ErrorKing?,
+                    .OBJC_ASSOCIATION_RETAIN_NONATOMIC
+                )
+            }
+        }
+    }
+    let associative: UIViewController = UIViewController()
 }
 
 extension UIViewController {
+    private struct AssociatedKeys {
+        static var DescriptiveName = "nsh_DescriptiveName"
+    }
+}
+
+extension UIViewController {
+    
     public override class func initialize() {
         struct Static {
             static var loadToken: dispatch_once_t = 0
             static var appearToken: dispatch_once_t = 0
         }
         
-        if self !== UIViewController.self {
+        if self !== UIViewController.self || self as? ErrorProne == nil {
             return
         }
         
@@ -199,22 +239,11 @@ extension UIViewController {
     
     func ek_viewDidAppear(animated: Bool) {
         self.ek_viewDidAppear(animated)
-        self.errorKing?.displayErrorIfNeeded()
+        (self as! ErrorProne).errorKing?.displayErrorIfNeeded()
     }
     
     func ek_viewDidLoad() {
         self.ek_viewDidLoad()
-        self.errorKing = ErrorKing()
-        self.errorKing?.setup(self)
-    }
-    
-    //
-    
-    func actionBeforeDisplayingErrorKingEmptyState() {
-        self.errorKing?.actionBeforeDisplayingErrorKingEmptyState()
-    }
-    
-    func errorKingEmptyStateReloadButtonTouched() {
-        self.errorKing?.errorKingEmptyStateReloadButtonTouched()
+        (self as! ErrorProne).errorKing?.setup(self)
     }
 }

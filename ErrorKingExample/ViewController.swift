@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ErrorProne {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,15 +21,14 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
 }
 
 extension ViewController {
-    override func actionBeforeDisplayingErrorKingEmptyState() {
-        super.actionBeforeDisplayingErrorKingEmptyState()
+    func actionBeforeDisplayingErrorKingEmptyState() {
+        errorKing?.actionBeforeDisplayingErrorKingEmptyState()
     }
-    override func errorKingEmptyStateReloadButtonTouched() {
+    func errorKingEmptyStateReloadButtonTouched() {
         print(" puts")
-        super.errorKingEmptyStateReloadButtonTouched()
+        errorKing?.errorKingEmptyStateReloadButtonTouched()
     }
 }
