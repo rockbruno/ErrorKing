@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.errorKing.setError(NSError(domain: " asd", code: 3, userInfo: nil))
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -23,3 +24,8 @@ class ViewController: UIViewController {
 
 }
 
+extension ViewController {
+    override func actionBeforeDisplayingEmptyState() {
+        super.actionBeforeDisplayingEmptyState()
+    }
+}
