@@ -21,10 +21,15 @@ extension ErrorKing: ErrorKingEmptyStateType {
 
 public class ErrorKing {
     private (set) weak var originalVC: UIViewController?
-    private (set) var shouldDisplayError = false
-    private (set) var storedTitle: String = ""
-    private (set) var storedDescription: String = ""
+    private (set) var storedData: ErrorKingStoredData = ErrorKingStoredData()
     private var emptyStateView: ErrorKingEmptyStateView = ErrorKingEmptyStateView.loadFromNib()
+    
+    struct ErrorKingStoredData {
+        private var title = ""
+        private var description = ""
+        private var emptyStateText = ""
+        private var shouldDisplayError = false
+    }
     
     init () {}
     
@@ -49,24 +54,25 @@ public class ErrorKing {
         emptyStateView.frame = rect
     }
     
-    final func setError(title title: String, description: String) {
-        shouldDisplayError = true
-        storedTitle = title
-        storedDescription = description
+    final func setError(title title: String, description: String, emptyStateText: String) {
+        storedData.shouldDisplayError = true
+        storedData.title = title
+        storedData.description = description
+        storedData.emptyStateText = emptyStateText
         displayErrorIfNeeded()
     }
     
     final func displayErrorIfNeeded() {
-        guard shouldDisplayError else { return }
-        displayError(storedTitle, description: storedDescription)
+        guard storedData.shouldDisplayError else { return }
+        displayError(storedData.title, description: storedData.description)
     }
     
     final private func displayError(title: String, description: String) {
         guard originalVC?.isVisible == true else {
             return
         }
-        emptyStateView.errorLabel?.text = description
-        shouldDisplayError = false
+        emptyStateView.errorLabel?.text = storedData.emptyStateText
+        storedData.shouldDisplayError = false
         dispatch_async(dispatch_get_main_queue(), {
             let alertController = ErrorKingAlertController(title: title, message: description)
             let handler: ErrorKingVoidHandler = { _ in

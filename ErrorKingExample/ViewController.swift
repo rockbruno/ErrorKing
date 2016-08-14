@@ -12,7 +12,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.errorKing?.setError(title: "oi", description: "tchau")
+        self.errorKing?.setError(title: "Damn!", description: "Sorry for that.", emptyStateText: "Something happened :(")
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -28,7 +28,7 @@ extension ViewController: ErrorProne {
         errorKing?.actionBeforeDisplayingErrorKingEmptyState()
     }
     func errorKingEmptyStateReloadButtonTouched() {
-        print(" puts")
+        print("Reload Button Touched")
         errorKing?.errorKingEmptyStateReloadButtonTouched()
     }
 }

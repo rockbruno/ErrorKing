@@ -15,20 +15,25 @@ public protocol ErrorProne: class {
     func errorKingEmptyStateReloadButtonTouched()
 }
 
+extension UIViewController {
+    private struct AssociatedKeys {
+        static var DescriptiveName = "ek_DescriptiveName"
+    }
+    var isVisible: Bool {
+        return self.isViewLoaded() && self.view.window != nil
+    }
+}
+
 extension ErrorProne where Self: UIViewController {
     var errorKing: ErrorKing? {
         get {
             return objc_getAssociatedObject(self, &Self.AssociatedKeys.DescriptiveName) as? ErrorKing
-        }
-        set {
-            if let newValue = newValue {
-                objc_setAssociatedObject(
-                    self,
-                    &Self.AssociatedKeys.DescriptiveName,
-                    newValue as ErrorKing?,
-                    .OBJC_ASSOCIATION_RETAIN_NONATOMIC
-                )
+        } set {
+            guard let newValue = newValue else {
+                return
             }
+            objc_setAssociatedObject(self, &Self.AssociatedKeys.DescriptiveName, newValue as ErrorKing?,
+            .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
     }
     
@@ -42,56 +47,27 @@ extension ErrorProne where Self: UIViewController {
 }
 
 extension UIViewController {
-    private struct AssociatedKeys {
-        static var DescriptiveName = "ek_DescriptiveName"
-    }
-    var isVisible: Bool {
-        return self.isViewLoaded() && self.view.window != nil
-    }
-}
-
-extension UIViewController {
-    
     override public class func initialize() {
-        if self !== UIViewController.self {
+        guard self === UIViewController.self else {
             return
         }
-
         struct Static {
             static var loadToken: dispatch_once_t = 0
             static var appearToken: dispatch_once_t = 0
         }
-        
-        dispatch_once(&Static.loadToken) {
-            let originalSelector = #selector(UIViewController.viewDidLoad)
-            let swizzledSelector = #selector(UIViewController.ek_viewDidLoad)
-            
-            let originalMethod = class_getInstanceMethod(self, originalSelector)
-            let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
-            
-            let didAddMethod = class_addMethod(self, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
-            
-            if didAddMethod {
-                class_replaceMethod(self, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
-            } else {
-                method_exchangeImplementations(originalMethod, swizzledMethod)
+        swizzle(#selector(UIViewController.viewDidLoad), new: #selector(UIViewController.ek_viewDidLoad), token: &Static.loadToken)
+        swizzle(#selector(UIViewController.viewDidAppear(_:)), new: #selector(UIViewController.ek_viewDidAppear(_:)), token: &Static.appearToken)
+    }
+    
+    private class func swizzle(original: Selector, new: Selector, inout token: dispatch_once_t) {
+        dispatch_once(&token) {
+            let originalMethod = class_getInstanceMethod(self, original)
+            let swizzledMethod = class_getInstanceMethod(self, new)
+            let didAddMethod = class_addMethod(self, original, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
+            guard didAddMethod else {
+                return method_exchangeImplementations(originalMethod, swizzledMethod)
             }
-        }
-        
-        dispatch_once(&Static.appearToken) {
-            let originalSelector = #selector(UIViewController.viewDidAppear(_:))
-            let swizzledSelector = #selector(UIViewController.ek_viewDidAppear(_:))
-            
-            let originalMethod = class_getInstanceMethod(self, originalSelector)
-            let swizzledMethod = class_getInstanceMethod(self, swizzledSelector)
-            
-            let didAddMethod = class_addMethod(self, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))
-            
-            if didAddMethod {
-                class_replaceMethod(self, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
-            } else {
-                method_exchangeImplementations(originalMethod, swizzledMethod)
-            }
+            class_replaceMethod(self, new, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod))
         }
     }
     
