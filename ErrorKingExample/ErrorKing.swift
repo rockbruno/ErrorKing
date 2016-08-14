@@ -107,3 +107,9 @@ public class ErrorKing {
         emptyStateView.hidden = true
     }
 }
+
+extension UIViewController {
+    var isVisible: Bool {
+        return self.isViewLoaded() && self.view.window != nil
+    }
+}

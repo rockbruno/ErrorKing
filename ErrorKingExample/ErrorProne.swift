@@ -10,31 +10,20 @@ import Foundation
 import UIKit
 
 public protocol ErrorProne: class {
-    var errorKing: ErrorKing? { get set }
+    var errorKing: ErrorKing? { get }
     func actionBeforeDisplayingErrorKingEmptyState()
     func errorKingEmptyStateReloadButtonTouched()
 }
 
-extension UIViewController {
+private extension UIViewController {
     private struct AssociatedKeys {
-        static var DescriptiveName = "ek_DescriptiveName"
-    }
-    var isVisible: Bool {
-        return self.isViewLoaded() && self.view.window != nil
+        static var EKDescriptiveName = "ek_DescriptiveName"
     }
 }
 
 extension ErrorProne where Self: UIViewController {
     var errorKing: ErrorKing? {
-        get {
-            return objc_getAssociatedObject(self, &Self.AssociatedKeys.DescriptiveName) as? ErrorKing
-        } set {
-            guard let newValue = newValue else {
-                return
-            }
-            objc_setAssociatedObject(self, &Self.AssociatedKeys.DescriptiveName, newValue as ErrorKing?,
-            .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
+        return objc_getAssociatedObject(self, &Self.AssociatedKeys.EKDescriptiveName) as? ErrorKing
     }
     
     func actionBeforeDisplayingErrorKingEmptyState() {
@@ -51,6 +40,7 @@ extension UIViewController {
         guard self === UIViewController.self else {
             return
         }
+        //I can't check for protocol conformance on initialize() without losing the ability to provide default implementations. For now, all view controllers get swizzled, although only ErrorProne ones do anything at all.
         struct Static {
             static var loadToken: dispatch_once_t = 0
             static var appearToken: dispatch_once_t = 0
@@ -71,19 +61,17 @@ extension UIViewController {
         }
     }
     
-    // MARK: - Method Swizzling
-    
-    func ek_viewDidLoad() {
+    @objc private func ek_viewDidLoad() {
         self.ek_viewDidLoad()
-        guard let errorProneController = self as? ErrorProne else {
+        guard let _ = self as? ErrorProne else {
             return
-        } //I can't check this on the initialize() method. It used to work before but now it throws an unknown compile error - maybe because I added :class to the protocol?
+        }
         let errorKing = ErrorKing()
         errorKing.setup(self)
-        errorProneController.errorKing = errorKing
+        objc_setAssociatedObject(self, &AssociatedKeys.EKDescriptiveName, errorKing, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
     
-    func ek_viewDidAppear(animated: Bool) {
+    @objc private func ek_viewDidAppear(animated: Bool) {
         self.ek_viewDidAppear(animated)
         guard let errorProneController = self as? ErrorProne else {
             return
