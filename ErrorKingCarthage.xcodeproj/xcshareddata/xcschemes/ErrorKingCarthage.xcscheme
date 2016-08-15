@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FDD6902D1D6258BB00A13E45"
-               BuildableName = "ErrorKing.framework"
-               BlueprintName = "ErrorKing"
-               ReferencedContainer = "container:ErrorKing.xcodeproj">
+               BlueprintIdentifier = "FDF5AF831D625BE100783521"
+               BuildableName = "ErrorKingCarthage.framework"
+               BlueprintName = "ErrorKingCarthage"
+               ReferencedContainer = "container:ErrorKingCarthage.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,20 +32,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FDD690371D6258BB00A13E45"
-               BuildableName = "ErrorKingTests.xctest"
-               BlueprintName = "ErrorKingTests"
-               ReferencedContainer = "container:ErrorKing.xcodeproj">
+               BlueprintIdentifier = "FDF5AF8D1D625BE200783521"
+               BuildableName = "ErrorKingCarthageTests.xctest"
+               BlueprintName = "ErrorKingCarthageTests"
+               ReferencedContainer = "container:ErrorKingCarthage.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FDD6902D1D6258BB00A13E45"
-            BuildableName = "ErrorKing.framework"
-            BlueprintName = "ErrorKing"
-            ReferencedContainer = "container:ErrorKing.xcodeproj">
+            BlueprintIdentifier = "FDF5AF831D625BE100783521"
+            BuildableName = "ErrorKingCarthage.framework"
+            BlueprintName = "ErrorKingCarthage"
+            ReferencedContainer = "container:ErrorKingCarthage.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -64,10 +64,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FDD6902D1D6258BB00A13E45"
-            BuildableName = "ErrorKing.framework"
-            BlueprintName = "ErrorKing"
-            ReferencedContainer = "container:ErrorKing.xcodeproj">
+            BlueprintIdentifier = "FDF5AF831D625BE100783521"
+            BuildableName = "ErrorKingCarthage.framework"
+            BlueprintName = "ErrorKingCarthage"
+            ReferencedContainer = "container:ErrorKingCarthage.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -82,10 +82,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FDD6902D1D6258BB00A13E45"
-            BuildableName = "ErrorKing.framework"
-            BlueprintName = "ErrorKing"
-            ReferencedContainer = "container:ErrorKing.xcodeproj">
+            BlueprintIdentifier = "FDF5AF831D625BE100783521"
+            BuildableName = "ErrorKingCarthage.framework"
+            BlueprintName = "ErrorKingCarthage"
+            ReferencedContainer = "container:ErrorKingCarthage.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
