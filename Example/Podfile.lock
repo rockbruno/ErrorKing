@@ -11,11 +11,11 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   ErrorKing:
-    :commit: 4c2fd68e666bebd42b83ac8b187cddb614c1553e
+    :commit: 1523c65fae7b4b7363406af14ef3893c134099d5
     :git: https://github.com/kingrocha/ErrorKing.git
 
 SPEC CHECKSUMS:
-  ErrorKing: e9bf6dc6e3ab25721f5e1e520a3f413069c70b6b
+  ErrorKing: 67676d444d4d5a24a3e6ca3bf49aa9f4e5a44bec
 
 PODFILE CHECKSUM: 5f14ece6f1ab7d18cdf17679557190e6899cbebb
 

@@ -21,7 +21,7 @@
   "source_files": "ErrorKing/Classes/**/*",
   "resource_bundles": {
     "ErrorKing": [
-      "ErrorKing/Assets/**/*"
+      "ErrorKing/Assets/EKAssets.xcassets"
     ]
   }
 }
