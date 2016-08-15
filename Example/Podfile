@@ -1,0 +1,5 @@
+use_frameworks!
+
+target 'ErrorKingExample' do
+  pod 'ErrorKing', :git => 'https://github.com/kingrocha/ErrorKing.git'
+end
