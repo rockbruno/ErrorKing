@@ -32,10 +32,10 @@ To program what happens when the Empty State's reload button is touched, add thi
 
 ```swift
 extension MyViewController: ErrorProne {
-func errorKingEmptyStateReloadButtonTouched() {
-//load my stuff again
-errorKing?.errorKingEmptyStateReloadButtonTouched()
-}
+  func errorKingEmptyStateReloadButtonTouched() {
+    //load my stuff again
+    errorKing?.errorKingEmptyStateReloadButtonTouched()
+  }
 }
 ```
 
@@ -43,8 +43,8 @@ Additionally, you can further customize ErrorKing by telling what happens before
 
 ```swift
 func actionBeforeDisplayingErrorKingEmptyState() {
-//do something before displaying the empty state screen, like disabling your tableView's scrolling
-errorKing?.actionBeforeDisplayingErrorKingEmptyState()
+  //do something before displaying the empty state screen, like disabling your tableView's scrolling
+  errorKing?.actionBeforeDisplayingErrorKingEmptyState()
 }
 ```
 
