@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ACustomView" customModule="ErrorKingExample" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4di-kU-YcA">
+                    <rect key="frame" x="207" y="285" width="186" height="30"/>
+                    <state key="normal" title="My Own Empty State View!"/>
+                    <connections>
+                        <action selector="tryAgain:" destination="iN0-l3-epB" eventType="touchUpInside" id="Jx0-nU-9ev"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#error_text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eIF-vA-qDn">
+                    <rect key="frame" x="258" y="256" width="84" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="0.065732758620689655" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="eIF-vA-qDn" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="LLL-av-m34"/>
+                <constraint firstItem="4di-kU-YcA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ZmZ-pu-e4e"/>
+                <constraint firstItem="4di-kU-YcA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="gLH-0n-N3h"/>
+                <constraint firstItem="eIF-vA-qDn" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-33.5" id="qVb-Is-itK"/>
+            </constraints>
+            <connections>
+                <outlet property="errorLabel" destination="eIF-vA-qDn" id="WrL-WQ-Wah"/>
+            </connections>
+        </view>
+    </objects>
+</document>
