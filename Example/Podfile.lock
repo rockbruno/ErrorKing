@@ -10,7 +10,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   ErrorKing:
-    :commit: e9268908c86e947d26f73d47fce1f96811667e0b
+    :commit: 4cb82a97092ec2c7d427f0764da5daf1c02cb251
     :git: https://github.com/kingrocha/ErrorKing.git
 
 SPEC CHECKSUMS:

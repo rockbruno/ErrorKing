@@ -27,7 +27,7 @@
                     <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="no_connection.png" translatesAutoresizingMaskIntoConstraints="NO" id="vbV-Kq-i7q">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="no_connection" translatesAutoresizingMaskIntoConstraints="NO" id="vbV-Kq-i7q">
                     <rect key="frame" x="8" y="159" width="584" height="170"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="170" id="AW0-gv-LEb"/>
@@ -55,6 +55,6 @@
         </view>
     </objects>
     <resources>
-        <image name="no_connection.png" width="729" height="384"/>
+        <image name="no_connection" width="729" height="384"/>
     </resources>
 </document>
