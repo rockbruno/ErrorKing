@@ -33,7 +33,7 @@ TODO: Add long description of the pod here.
   s.source_files = 'ErrorKing/Classes/**/*'
   
   s.resource_bundles = {
-    'ErrorKing' => ['ErrorKing/Assets/*.png']
+    'ErrorKing' => ['ErrorKing/Assets/**/*']
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
