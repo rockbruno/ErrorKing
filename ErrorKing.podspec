@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ErrorKing'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'Swift Lib to make displaying errors and emptyState screens a very easy task'
 
 # This description is used to generate tags and improve search results.
