@@ -38,7 +38,7 @@ public class ErrorKing {
         setEmptyStateView(toView: ErrorKingEmptyStateView.loadFromNib())
     }
     
-    final func setEmptyStateView(toView view: ErrorKingEmptyStateView) {
+    final public func setEmptyStateView(toView view: ErrorKingEmptyStateView) {
         guard let originalVC = originalVC else {
             return
         }
@@ -52,11 +52,11 @@ public class ErrorKing {
         self.emptyStateView = emptyStateView
     }
     
-    final func setEmptyStateFrame(rect: CGRect) {
+    final public func setEmptyStateFrame(rect: CGRect) {
         emptyStateView?.frame = rect
     }
     
-    final func setError(title title: String, description: String, emptyStateText: String) {
+    final public func setError(title title: String, description: String, emptyStateText: String) {
         storedData.shouldDisplayError = true
         storedData.title = title
         storedData.description = description
@@ -64,7 +64,7 @@ public class ErrorKing {
         displayErrorIfNeeded()
     }
     
-    final func displayErrorIfNeeded() {
+    final private func displayErrorIfNeeded() {
         guard storedData.shouldDisplayError else { return }
         displayError(storedData.title, description: storedData.description)
     }
@@ -89,7 +89,7 @@ public class ErrorKing {
         (originalVC as? ErrorProne)?.actionBeforeDisplayingErrorKingEmptyState()
     }
     
-    final func actionBeforeDisplayingErrorKingEmptyState() {
+    final public func actionBeforeDisplayingErrorKingEmptyState() {
         displayEmptyState()
     }
     
@@ -105,7 +105,7 @@ public class ErrorKing {
         }
     }
     
-    final func errorKingEmptyStateReloadButtonTouched() {
+    final public func errorKingEmptyStateReloadButtonTouched() {
         emptyStateView?.hidden = true
     }
 }
