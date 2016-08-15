@@ -144,7 +144,7 @@ public extension ErrorProne where Self: UIViewController {
     }
 }
 
-private extension UIViewController {
+extension UIViewController {
     override public class func initialize() {
         guard self === UIViewController.self else {
             return

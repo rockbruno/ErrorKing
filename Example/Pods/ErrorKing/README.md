@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/ErrorKing.svg?style=flat)](http://cocoapods.org/pods/ErrorKing)
 [![Platform](https://img.shields.io/cocoapods/p/ErrorKing.svg?style=flat)](http://cocoapods.org/pods/ErrorKing)
 
-Add the ability of displaying smart error alerts and empty state views on your ViewControllers just by inheriting the ErrorProne protocol. No setup needed.
+Add the ability of displaying smart error alerts and empty state views on your ViewControllers just by inheriting the ErrorProne protocol. No setup needed - Error King uses Method Swizzling to do the setup for you.
 
 ErrorProne adds the errorKing variable to your ViewController. By calling it's setError() method, ErrorKing will store the error data and display an AlertView the next time your ViewController is visible - and an EmptyState view that does whatever you want after the reload button is touched.
 
@@ -26,7 +26,7 @@ extension MyViewController: ErrorProne {
 }
 ```
 
-That's it! You can now call the setError() method and see it's effects.
+That's it! You can now call the errorKing?.setError() method and see it's effects.
 
 To program what happens when the Empty State's reload button is touched, add this protocol method to your extension:
 
@@ -54,11 +54,17 @@ Also, by changing the Empty state view's frame:
 self.errorKing?.setEmptyStateFrame(rect: aFrame)
 ```
 
-And by providing your own EmptyState view:
+## Providing your own EmptyState screen
+
+To add your own Empty State view, simply make a .xib that has ErrorKingEmptyStateView as it's class or superclass, link the corresponding outlets and then call
 
 ```swift
 self.errorKing?.setEmptyStateView(toView: myCustomEmptyState)
 ```
+
+You can see it in action on the Example project.
+
+[![ExampleEmptyState](http://i.imgur.com/Ge4BctQ.png)](http://cocoapods.org/pods/ErrorKing)
 
 ## Installation
 

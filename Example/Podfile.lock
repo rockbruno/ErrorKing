@@ -1,22 +1,12 @@
 PODS:
-  - ErrorKing (0.1.0)
+  - ErrorKing (0.1.2)
 
 DEPENDENCIES:
-  - ErrorKing (from `https://github.com/kingrocha/ErrorKing.git`, branch `dev`)
-
-EXTERNAL SOURCES:
-  ErrorKing:
-    :branch: dev
-    :git: https://github.com/kingrocha/ErrorKing.git
-
-CHECKOUT OPTIONS:
-  ErrorKing:
-    :commit: 6c696220004ba8b6ebf86b17d0c9c611f182e38b
-    :git: https://github.com/kingrocha/ErrorKing.git
+  - ErrorKing
 
 SPEC CHECKSUMS:
-  ErrorKing: 67676d444d4d5a24a3e6ca3bf49aa9f4e5a44bec
+  ErrorKing: e4907c135a939e976a86dd722471bd27e5b00cb1
 
-PODFILE CHECKSUM: 5f14ece6f1ab7d18cdf17679557190e6899cbebb
+PODFILE CHECKSUM: 180674213e14b2a43958c7655af172991e76e6c1
 
 COCOAPODS: 1.0.1
