@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ErrorKingEmptyStateView: UIView {
+class ErrorKingEmptyStateView: UIView {
     @IBOutlet weak var errorLabel: UILabel?
     weak var coordinator: ErrorKingEmptyStateType?
     

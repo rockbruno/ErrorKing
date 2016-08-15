@@ -22,7 +22,7 @@ extension ErrorKing: ErrorKingEmptyStateType {
 public class ErrorKing {
     private (set) weak var originalVC: UIViewController?
     private (set) var storedData: ErrorKingStoredData = ErrorKingStoredData()
-    private var emptyStateView: ErrorKingEmptyStateView = ErrorKingEmptyStateView.loadFromNib()
+    private var emptyStateView: ErrorKingEmptyStateView?
     
     struct ErrorKingStoredData {
         private var title = ""
@@ -36,22 +36,24 @@ public class ErrorKing {
     final func setup(owner: UIViewController) {
         originalVC = owner
         setEmptyStateView(toView: ErrorKingEmptyStateView.loadFromNib())
-        owner.view.addSubview(emptyStateView)
     }
     
     final func setEmptyStateView(toView view: ErrorKingEmptyStateView) {
         guard let originalVC = originalVC else {
             return
         }
-        emptyStateView = view
+        let emptyStateView = view
         emptyStateView.coordinator = self
         emptyStateView.frame = originalVC.view.frame
         emptyStateView.layoutIfNeeded()
         emptyStateView.hidden = true
+        emptyStateView.removeFromSuperview()
+        originalVC.view.addSubview(emptyStateView)
+        self.emptyStateView = emptyStateView
     }
     
     final func setEmptyStateFrame(rect: CGRect) {
-        emptyStateView.frame = rect
+        emptyStateView?.frame = rect
     }
     
     final func setError(title title: String, description: String, emptyStateText: String) {
@@ -71,7 +73,7 @@ public class ErrorKing {
         guard originalVC?.isVisible == true else {
             return
         }
-        emptyStateView.errorLabel?.text = storedData.emptyStateText
+        emptyStateView?.errorLabel?.text = storedData.emptyStateText
         storedData.shouldDisplayError = false
         dispatch_async(dispatch_get_main_queue(), {
             let alertController = ErrorKingAlertController(title: title, message: description)
@@ -96,15 +98,15 @@ public class ErrorKing {
             return
         }
         originalVC.view.userInteractionEnabled = true
-        emptyStateView.alpha = 0
-        emptyStateView.hidden = false
+        emptyStateView?.alpha = 0
+        emptyStateView?.hidden = false
         UIView.animateWithDuration(0.5) {
-            self.emptyStateView.alpha = 1.0
+            self.emptyStateView?.alpha = 1.0
         }
     }
     
     final func errorKingEmptyStateReloadButtonTouched() {
-        emptyStateView.hidden = true
+        emptyStateView?.hidden = true
     }
 }
 

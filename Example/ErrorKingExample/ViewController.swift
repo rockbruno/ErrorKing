@@ -9,18 +9,15 @@
 import UIKit
 
 class ViewController: UIViewController {
-
     override func viewDidLoad() {
         super.viewDidLoad()
+    //Uncomment these to show a custom Empty State View.
+    //=======
+        //let myCustomEmptyState = ACustomView.loadFromNib()
+        //self.errorKing?.setEmptyStateView(toView: myCustomEmptyState)
+    //========
         self.errorKing?.setError(title: "Damn!", description: "Sorry for that.", emptyStateText: "Something happened :(")
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
 }
 
 extension ViewController: ErrorProne {
