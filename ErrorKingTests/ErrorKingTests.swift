@@ -1,15 +1,15 @@
 //
-//  ErrorKingCarthageTests.swift
-//  ErrorKingCarthageTests
+//  ErrorKingTests.swift
+//  ErrorKingTests
 //
 //  Created by Bruno Rocha on 8/15/16.
 //  Copyright © 2016 Movile. All rights reserved.
 //
 
 import XCTest
-@testable import ErrorKingCarthage
+@testable import ErrorKing
 
-class ErrorKingCarthageTests: XCTestCase {
+class ErrorKingTests: XCTestCase {
     
     override func setUp() {
         super.setUp()

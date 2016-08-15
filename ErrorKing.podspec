@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ErrorKing'
-  s.version          = '0.1.2'
+  s.version          = '0.1.3'
   s.summary          = 'Swift Lib to make displaying errors and emptyState screens a very easy task'
 
 # This description is used to generate tags and improve search results.
@@ -30,10 +30,10 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'ErrorKing/Classes/**/*'
+  s.source_files = 'Sources/Classes/**/*'
   
   s.resource_bundles = {
-    'ErrorKing' => ['ErrorKing/Assets/EKAssets.xcassets']
+    'ErrorKing' => ['Sources/Assets/EKAssets.xcassets']
   }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
