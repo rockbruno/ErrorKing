@@ -17,6 +17,7 @@
 		FDD6905D1D6259D800A13E45 /* ErrorProne.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD690541D6259D800A13E45 /* ErrorProne.swift */; };
 		FDD6905E1D6259D800A13E45 /* ErrorKingEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD690561D6259D800A13E45 /* ErrorKingEmptyStateView.swift */; };
 		FDD6905F1D6259D800A13E45 /* ErrorKingEmptyStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FDD690571D6259D800A13E45 /* ErrorKingEmptyStateView.xib */; };
+		FDF5AF791D625AC300783521 /* ErrorKing.h in Resources */ = {isa = PBXBuildFile; fileRef = FDD690481D6259B000A13E45 /* ErrorKing.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -234,6 +235,7 @@
 			files = (
 				FDD690591D6259D800A13E45 /* EKAssets.xcassets in Resources */,
 				FDD6904B1D6259B400A13E45 /* Info.plist in Resources */,
+				FDF5AF791D625AC300783521 /* ErrorKing.h in Resources */,
 				FDD6905F1D6259D800A13E45 /* ErrorKingEmptyStateView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
