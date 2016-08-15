@@ -1,6 +1,7 @@
 # ErrorKing
 
 [![CI Status](http://img.shields.io/travis/bruno-rocha-movile/ErrorKing.svg?style=flat)](https://travis-ci.org/bruno-rocha-movile/ErrorKing)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![Version](https://img.shields.io/cocoapods/v/ErrorKing.svg?style=flat)](http://cocoapods.org/pods/ErrorKing)
 [![License](https://img.shields.io/cocoapods/l/ErrorKing.svg?style=flat)](http://cocoapods.org/pods/ErrorKing)
 [![Platform](https://img.shields.io/cocoapods/p/ErrorKing.svg?style=flat)](http://cocoapods.org/pods/ErrorKing)
@@ -32,10 +33,10 @@ To program what happens when the Empty State's reload button is touched, add thi
 
 ```swift
 extension MyViewController: ErrorProne {
-  func errorKingEmptyStateReloadButtonTouched() {
-    //load my stuff again
-    errorKing?.errorKingEmptyStateReloadButtonTouched()
-  }
+    func errorKingEmptyStateReloadButtonTouched() {
+        //load my stuff again
+        errorKing?.errorKingEmptyStateReloadButtonTouched()
+    }
 }
 ```
 
@@ -43,8 +44,8 @@ Additionally, you can further customize ErrorKing by telling what happens before
 
 ```swift
 func actionBeforeDisplayingErrorKingEmptyState() {
-  //do something before displaying the empty state screen, like disabling your tableView's scrolling
-  errorKing?.actionBeforeDisplayingErrorKingEmptyState()
+    //do something before displaying the empty state screen, like disabling your tableView's scrolling
+    errorKing?.actionBeforeDisplayingErrorKingEmptyState()
 }
 ```
 
@@ -66,10 +67,15 @@ You can see it in action on the Example project.
 
 [![ExampleEmptyState](http://i.imgur.com/Ge4BctQ.png)](http://cocoapods.org/pods/ErrorKing)
 
-## Installation
+# Installation
 
-ErrorKing is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+### Carthage
+
+```ruby
+github "kingrocha/ErrorKing" "master"
+```
+
+### CocoaPods
 
 ```ruby
 pod "ErrorKing"
