@@ -32,3 +32,5 @@ Example/Pods/
 # `pod install` in .travis.yml
 #
 # Pods/
+
+Example/Cartfile.resolved
