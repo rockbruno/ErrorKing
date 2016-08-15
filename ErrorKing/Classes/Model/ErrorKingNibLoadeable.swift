@@ -14,7 +14,7 @@ extension ErrorKingNibLoadable where Self: UIView {
     static func loadFromNib() -> Self {
         // The view class should have the same name as the xib filename, e.g.: MyView and MyView.xib
         if let nibName = nibName() {
-            let nib = UINib(nibName: nibName, bundle: nil)
+            let nib = UINib(nibName: nibName, bundle: NSBundle(forClass: Self.self))
             if let view = nib.instantiateWithOwner(self, options: nil).first as? Self {
                 return view
             }
