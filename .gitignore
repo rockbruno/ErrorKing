@@ -34,3 +34,5 @@ Example/Pods/
 # Pods/
 
 Example/Cartfile.resolved
+
+Example/Podfile.lock
