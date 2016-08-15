@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		FDD690391D6258BB00A13E45 /* ErrorKing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDD6902E1D6258BB00A13E45 /* ErrorKing.framework */; };
 		FDD6903E1D6258BB00A13E45 /* ErrorKingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD6903D1D6258BB00A13E45 /* ErrorKingTests.swift */; };
-		FDD690491D6259B000A13E45 /* ErrorKing.h in Headers */ = {isa = PBXBuildFile; fileRef = FDD690481D6259B000A13E45 /* ErrorKing.h */; };
+		FDD690491D6259B000A13E45 /* ErrorKing.h in Headers */ = {isa = PBXBuildFile; fileRef = FDD690481D6259B000A13E45 /* ErrorKing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FDD6904B1D6259B400A13E45 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FDD6904A1D6259B400A13E45 /* Info.plist */; };
 		FDD690591D6259D800A13E45 /* EKAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FDD6904E1D6259D800A13E45 /* EKAssets.xcassets */; };
 		FDD6905B1D6259D800A13E45 /* ErrorKingAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD690521D6259D800A13E45 /* ErrorKingAlertController.swift */; };
@@ -37,9 +37,7 @@
 		FDD6903F1D6258BB00A13E45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FDD690481D6259B000A13E45 /* ErrorKing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ErrorKing.h; path = ErrorKingCarthageResources/ErrorKing.h; sourceTree = SOURCE_ROOT; };
 		FDD6904A1D6259B400A13E45 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ErrorKingCarthageResources/Info.plist; sourceTree = SOURCE_ROOT; };
-		FDD6904D1D6259D800A13E45 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		FDD6904E1D6259D800A13E45 /* EKAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = EKAssets.xcassets; sourceTree = "<group>"; };
-		FDD690501D6259D800A13E45 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
 		FDD690521D6259D800A13E45 /* ErrorKingAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorKingAlertController.swift; sourceTree = "<group>"; };
 		FDD690531D6259D800A13E45 /* ErrorKingNibLoadeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorKingNibLoadeable.swift; sourceTree = "<group>"; };
 		FDD690541D6259D800A13E45 /* ErrorProne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorProne.swift; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 		FDD6904C1D6259D800A13E45 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				FDD6904D1D6259D800A13E45 /* .gitkeep */,
 				FDD6904E1D6259D800A13E45 /* EKAssets.xcassets */,
 			);
 			path = Assets;
@@ -116,7 +113,6 @@
 		FDD6904F1D6259D800A13E45 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				FDD690501D6259D800A13E45 /* .gitkeep */,
 				FDD690511D6259D800A13E45 /* Model */,
 				FDD690551D6259D800A13E45 /* View */,
 			);
