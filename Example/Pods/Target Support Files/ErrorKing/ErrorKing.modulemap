@@ -1,6 +1,0 @@
-framework module ErrorKing {
-  umbrella header "ErrorKing-umbrella.h"
-
-  export *
-  module * { export * }
-}

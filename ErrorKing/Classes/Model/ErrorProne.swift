@@ -21,7 +21,7 @@ private extension UIViewController {
     }
 }
 
-extension ErrorProne where Self: UIViewController {
+public extension ErrorProne where Self: UIViewController {
     var errorKing: ErrorKing? {
         return objc_getAssociatedObject(self, &Self.AssociatedKeys.EKDescriptiveName) as? ErrorKing
     }
@@ -35,7 +35,7 @@ extension ErrorProne where Self: UIViewController {
     }
 }
 
-extension UIViewController {
+public extension UIViewController {
     override public class func initialize() {
         guard self === UIViewController.self else {
             return
