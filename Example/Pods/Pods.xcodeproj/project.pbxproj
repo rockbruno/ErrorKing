@@ -20,6 +20,7 @@
 		A82C5F4485233C4034400AFF5C511016 /* Pods-ErrorKingExample-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A21F24E0D808BCA17A2427F51206FF60 /* Pods-ErrorKingExample-dummy.m */; };
 		A93BEBC95ACF7AE65F0B4FE211A25B85 /* ErrorKingNibLoadeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C180DDCDF24D8066F0616AD18EAEE11 /* ErrorKingNibLoadeable.swift */; };
 		E72B3EE431D47B6B330993600D0B5640 /* ErrorKing-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AF596BC0B94A1585DE21142D383BB426 /* ErrorKing-dummy.m */; };
+		FD1071071D62320D0064CE53 /* EKAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB97A7A1BADA97F86B6E3CEB6C5B5AF7 /* EKAssets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -323,6 +324,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A709EA4255A7D422F61A00CD7E609A6 /* ErrorKing.bundle in Resources */,
+				FD1071071D62320D0064CE53 /* EKAssets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
