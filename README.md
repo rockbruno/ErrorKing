@@ -83,7 +83,7 @@ pod "ErrorKing"
 
 ## Author
 
-kingrocha, brunorochaesilva@movile.com
+kingrocha, brunorochaesilva@gmail.com
 
 ## License
 
