@@ -1,5 +1,5 @@
 use_frameworks!
 
 target 'ErrorKingExample' do
-  pod 'ErrorKing'
+  pod 'ErrorKing’, :path => '/Users/bruno.rocha/Desktop/Personal Codes/ErrorKing'
 end

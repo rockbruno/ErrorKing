@@ -9,10 +9,9 @@
 /* Begin PBXBuildFile section */
 		FD6250C01D625E9500C6D9B3 /* EKAssets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD6250B51D625E9500C6D9B3 /* EKAssets.xcassets */; };
 		FD6250C21D625E9500C6D9B3 /* ErrorKingAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6250B91D625E9500C6D9B3 /* ErrorKingAlertController.swift */; };
-		FD6250C31D625E9500C6D9B3 /* ErrorKingNibLoadeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6250BA1D625E9500C6D9B3 /* ErrorKingNibLoadeable.swift */; };
 		FD6250C41D625E9500C6D9B3 /* ErrorProne.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6250BB1D625E9500C6D9B3 /* ErrorProne.swift */; };
 		FD6250C51D625E9500C6D9B3 /* ErrorKingEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD6250BD1D625E9500C6D9B3 /* ErrorKingEmptyStateView.swift */; };
-		FD6250C61D625E9500C6D9B3 /* ErrorKingEmptyStateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FD6250BE1D625E9500C6D9B3 /* ErrorKingEmptyStateView.xib */; };
+		FDD3FE851E945F9500974033 /* ErrorKingEmptyStateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDD3FE841E945F9500974033 /* ErrorKingEmptyStateType.swift */; };
 		FDF5AFC21D625E3900783521 /* ErrorKing.h in Headers */ = {isa = PBXBuildFile; fileRef = FDF5AFC11D625E3900783521 /* ErrorKing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FDF5AFC91D625E3900783521 /* ErrorKing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FDF5AFBE1D625E3900783521 /* ErrorKing.framework */; };
 		FDF5AFCE1D625E3900783521 /* ErrorKingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDF5AFCD1D625E3900783521 /* ErrorKingTests.swift */; };
@@ -31,10 +30,9 @@
 /* Begin PBXFileReference section */
 		FD6250B51D625E9500C6D9B3 /* EKAssets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = EKAssets.xcassets; sourceTree = "<group>"; };
 		FD6250B91D625E9500C6D9B3 /* ErrorKingAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorKingAlertController.swift; sourceTree = "<group>"; };
-		FD6250BA1D625E9500C6D9B3 /* ErrorKingNibLoadeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorKingNibLoadeable.swift; sourceTree = "<group>"; };
 		FD6250BB1D625E9500C6D9B3 /* ErrorProne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorProne.swift; sourceTree = "<group>"; };
 		FD6250BD1D625E9500C6D9B3 /* ErrorKingEmptyStateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorKingEmptyStateView.swift; sourceTree = "<group>"; };
-		FD6250BE1D625E9500C6D9B3 /* ErrorKingEmptyStateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrorKingEmptyStateView.xib; sourceTree = "<group>"; };
+		FDD3FE841E945F9500974033 /* ErrorKingEmptyStateType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorKingEmptyStateType.swift; sourceTree = "<group>"; };
 		FDF5AFBE1D625E3900783521 /* ErrorKing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ErrorKing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FDF5AFC11D625E3900783521 /* ErrorKing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErrorKing.h; sourceTree = "<group>"; };
 		FDF5AFC31D625E3900783521 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,8 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				FD6250B91D625E9500C6D9B3 /* ErrorKingAlertController.swift */,
-				FD6250BA1D625E9500C6D9B3 /* ErrorKingNibLoadeable.swift */,
 				FD6250BB1D625E9500C6D9B3 /* ErrorProne.swift */,
+				FDD3FE841E945F9500974033 /* ErrorKingEmptyStateType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -95,7 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				FD6250BD1D625E9500C6D9B3 /* ErrorKingEmptyStateView.swift */,
-				FD6250BE1D625E9500C6D9B3 /* ErrorKingEmptyStateView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -200,9 +197,11 @@
 				TargetAttributes = {
 					FDF5AFBD1D625E3900783521 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0830;
 					};
 					FDF5AFC71D625E3900783521 = {
 						CreatedOnToolsVersion = 7.3.1;
+						LastSwiftMigration = 0830;
 					};
 				};
 			};
@@ -230,7 +229,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD6250C01D625E9500C6D9B3 /* EKAssets.xcassets in Resources */,
-				FD6250C61D625E9500C6D9B3 /* ErrorKingEmptyStateView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,8 +247,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FD6250C21D625E9500C6D9B3 /* ErrorKingAlertController.swift in Sources */,
-				FD6250C31D625E9500C6D9B3 /* ErrorKingNibLoadeable.swift in Sources */,
 				FD6250C51D625E9500C6D9B3 /* ErrorKingEmptyStateView.swift in Sources */,
+				FDD3FE851E945F9500974033 /* ErrorKingEmptyStateType.swift in Sources */,
 				FD6250C41D625E9500C6D9B3 /* ErrorProne.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -378,6 +376,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.brunorocha.ErrorKing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -394,6 +393,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.brunorocha.ErrorKing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -404,6 +404,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.brunorocha.ErrorKingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -414,6 +415,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.brunorocha.ErrorKingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

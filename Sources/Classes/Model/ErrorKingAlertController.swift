@@ -15,14 +15,14 @@ final class ErrorKingAlertController {
     let alert: UIAlertController
     
     init(title: String, message: String) {
-        alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addButtonAndHandler(handler: ErrorKingActionHandler?) {
-        alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: handler))
+    func addButtonAndHandler(_ handler: ErrorKingActionHandler?) {
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: handler))
     }
 }
