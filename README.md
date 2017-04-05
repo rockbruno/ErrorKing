@@ -6,50 +6,48 @@
 [![License](https://img.shields.io/cocoapods/l/ErrorKing.svg?style=flat)](http://cocoapods.org/pods/ErrorKing)
 [![Platform](https://img.shields.io/cocoapods/p/ErrorKing.svg?style=flat)](http://cocoapods.org/pods/ErrorKing)
 
-Add the ability of displaying smart error alerts and empty state views on your ViewControllers just by inheriting the ErrorProne protocol. No setup needed - Error King uses Method Swizzling to do the setup for you.
+Smart error alerts and full-fledged empty state views on your ViewControllers just a protocol inheritance away.
 
-ErrorProne adds the errorKing variable to your ViewController. By calling it's setError() method, ErrorKing will store the error data and display an AlertView the next time your ViewController is visible - and an EmptyState view that does whatever you want after the reload button is touched.
+To add ErrorKing to your ViewController, extend it with the ErrorProne protocol:
 
 ```swift
-self.errorKing?.setError(title: "Damn!", description: "Sorry for that.", emptyStateText: "Something happened :(")
+extension MyViewController: ErrorProne {}
 ```
 
-The next time the ViewController is visible (if the user triggered a load but pushed another screen, for example), the user will be greeted with:
+That's it! You can now call your ViewController's new property: `errorKing`, and see it's effects.
+
+```swift
+self.errorKing.setError(title: "Damn!", description: "Sorry for that.", emptyStateText: "Something happened :(")
+```
+
+Now, the next time your ViewController is visible (if the user triggered a load but pushed another screen, for example), ErrorKing will display:
 
 [![Error](http://i.imgur.com/VloOTJY.png)](http://cocoapods.org/pods/ErrorKing)
 [![EmptyState](http://i.imgur.com/vQV99sP.png)](http://cocoapods.org/pods/ErrorKing)
 
-# Instructions
-To add ErrorKing to your ViewController, add the ErrorProne protocol:
+# Additional Customization
 
-```swift
-extension MyViewController: ErrorProne {
-}
-```
-
-That's it! You can now call the errorKing?.setError() method and see it's effects.
-
-To program what happens when the Empty State's reload button is touched, add this protocol method to your extension:
+To dictate what happens when the empty state's reload button is touched, override `ErrorProne`'s `errorKingEmptyStateReloadButtonTouched`:
 
 ```swift
 extension MyViewController: ErrorProne {
     func errorKingEmptyStateReloadButtonTouched() {
         //load my stuff again
-        errorKing?.errorKingEmptyStateReloadButtonTouched()
+        errorKing.errorKingEmptyStateReloadButtonTouched() //This will remove the empty state from the screen.
     }
 }
 ```
 
-Additionally, you can further customize ErrorKing by telling what happens before the empty state screen is displayed:
+You can also program what happens before the empty state is displayed:
 
 ```swift
 func actionBeforeDisplayingErrorKingEmptyState() {
     //do something before displaying the empty state screen, like disabling your tableView's scrolling
-    errorKing?.actionBeforeDisplayingErrorKingEmptyState()
+    errorKing.actionBeforeDisplayingErrorKingEmptyState() //Sets up and displays the empty state screen.
 }
 ```
 
-Also, by changing the Empty state view's frame:
+...and change the empty state's frame if needed:
 
 ```swift
 self.errorKing?.setEmptyStateFrame(rect: aFrame)
@@ -57,10 +55,10 @@ self.errorKing?.setEmptyStateFrame(rect: aFrame)
 
 ## Providing your own EmptyState screen
 
-To add your own Empty State view, simply make a .xib that has ErrorKingEmptyStateView as it's class or superclass, link the corresponding outlets and then call
+To add your own Empty State view, simply make a .swift/.xib that has ErrorKingEmptyStateView as it's class or superclass and link the corresponding outlets, if you used a .xib, or set `errorLabel` and init a button that triggers `tryAgain:`, if you use view code. After that, call:
 
 ```swift
-self.errorKing?.setEmptyStateView(toView: myCustomEmptyState)
+self.errorKing.setEmptyStateView(toView: myCustomEmptyState)
 ```
 
 You can see it in action on the Example project.
@@ -72,7 +70,7 @@ You can see it in action on the Example project.
 ### Carthage
 
 ```ruby
-github "kingrocha/ErrorKing" "master"
+github "rockbruno/ErrorKing" "master"
 ```
 
 ### CocoaPods
@@ -83,7 +81,7 @@ pod "ErrorKing"
 
 ## Author
 
-kingrocha, brunorochaesilva@gmail.com
+rockbruno, brunorochaesilva@gmail.com
 
 ## License
 
