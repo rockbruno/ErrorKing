@@ -81,7 +81,7 @@ pod "ErrorKing"
 
 ## Author
 
-rockbruno, brunorochaesilva@movile.com
+rockbruno, brunorochaesilva@gmail.com
 
 ## License
 
